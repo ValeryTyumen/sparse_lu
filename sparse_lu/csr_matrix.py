@@ -1,5 +1,6 @@
 from numba import jitclass
 from numba.types import int32, float64
+from . import numba_utils
 
 
 @jitclass([('_element_values', float64[:]),
@@ -34,4 +35,4 @@ class CSRMatrix:
         return len(self._row_first_element_indices) - 1
 
 
-csr_matrix_nb_type = CSRMatrix.class_type.instance_type
+csr_matrix_nb_type = numba_utils.get_numba_type(CSRMatrix)
